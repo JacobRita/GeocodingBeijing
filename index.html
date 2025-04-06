@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>天地图坐标系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="map"></div>
+        <div class="sidebar">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="输入地址进行搜索...">
+                <button id="search-btn">搜索</button>
+            </div>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <!-- 天地图API（替换YOUR_KEY） -->
+    <script>
+        // 初始化入口
+        function initApp() {
+            const script = document.createElement('script');
+            script.src = 'http://api.tianditu.gov.cn/api?v=4.0&tk=a1d75044bbf5cb769e6cfd852d65f544&callback=onApiReady';
+            document.head.appendChild(script);
+        }
+
+        // API加载完成回调
+        function onApiReady() {
+            window.MapManager.init();
+            window.ResultManager.initSearch();
+        }
+
+        // 启动初始化
+        initApp();
+    </script>
+    <!-- 模块化JS -->
+    <script type="module" src="js/state.js"></script>
+    <script type="module" src="js/mapManager.js"></script>
+    <script type="module" src="js/geocoder.js"></script>
+    <script type="module" src="js/resultManager.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
